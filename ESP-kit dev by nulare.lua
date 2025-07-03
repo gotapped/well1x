@@ -64,39 +64,39 @@ zombies:Destroy()
 ESPLib = {}
 ESPLib.__index = ESPLib
 
-RED = Color3(1, 0, 0)
-GREEN = Color3(0, 1, 0)
-BLUE = Color3(0, 0, 1)
-YELLOW = Color3(1, 1, 0)
-CYAN = Color3(0, 1, 1)
-PINK = Color3(1, 0, 1)
-WHITE = Color3(1, 1, 1)
-BLACK = Color3(0, 0, 0)
+RED = Color3.new(1, 0, 0)
+GREEN = Color3.new(0, 1, 0)
+BLUE = Color3.new(0, 0, 1)
+YELLOW = Color3.new(1, 1, 0)
+CYAN = Color3.new(0, 1, 1)
+PINK = Color3.new(1, 0, 1)
+WHITE = Color3.new(1, 1, 1)
+BLACK = Color3.new(0, 0, 0)
 
 ESP_FONTSIZE = 7 -- works great with ProggyClean
 DEFAULT_PARTS_SIZING = {
-    Head = Vector3(2, 1, 1),
+    Head = Vector3.new(2, 1, 1),
 
-    Torso = Vector3(2, 2, 1),
-    ['Left Arm'] = Vector3(1, 2, 1),
-    ['Right Arm'] = Vector3(1, 2, 1),
-    ['Left Leg'] = Vector3(1, 2, 1),
-    ['Right Leg'] = Vector3(1, 2, 1),
+    Torso = Vector3.new(2, 2, 1),
+    ['Left Arm'] = Vector3.new(1, 2, 1),
+    ['Right Arm'] = Vector3.new(1, 2, 1),
+    ['Left Leg'] = Vector3.new(1, 2, 1),
+    ['Right Leg'] = Vector3.new(1, 2, 1),
 
-    UpperTorso = Vector3(2, 1, 1),
-    LowerTorso = Vector3(2, 1, 1),
-    LeftUpperArm = Vector3(1, 1, 1),
-    LeftLowerArm = Vector3(1, 1, 1),
-    LeftHand = Vector3(0.3, 0.3, 1),
-    RightUpperArm = Vector3(1, 1, 1),
-    RightLowerArm = Vector3(1, 1, 1),
-    RightHand = Vector3(0.3, 0.3, 1),
-    LeftUpperLeg = Vector3(1, 1, 1),
-    LeftLowerLeg = Vector3(1, 1, 1),
-    LeftFoot = Vector3(0.3, 0.3, 1),
-    RightUpperLeg = Vector3(1, 1, 1),
-    RightLowerLeg = Vector3(1, 1, 1),
-    RightFoot = Vector3(0.3, 0.3, 1),
+    UpperTorso = Vector3.new(2, 1, 1),
+    LowerTorso = Vector3.new(2, 1, 1),
+    LeftUpperArm = Vector3.new(1, 1, 1),
+    LeftLowerArm = Vector3.new(1, 1, 1),
+    LeftHand = Vector3.new(0.3, 0.3, 1),
+    RightUpperArm = Vector3.new(1, 1, 1),
+    RightLowerArm = Vector3.new(1, 1, 1),
+    RightHand = Vector3.new(0.3, 0.3, 1),
+    LeftUpperLeg = Vector3.new(1, 1, 1),
+    LeftLowerLeg = Vector3.new(1, 1, 1),
+    LeftFoot = Vector3.new(0.3, 0.3, 1),
+    RightUpperLeg = Vector3.new(1, 1, 1),
+    RightLowerLeg = Vector3.new(1, 1, 1),
+    RightFoot = Vector3.new(0.3, 0.3, 1),
 }
 
 local myCamera = workspace.CurrentCamera
