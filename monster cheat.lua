@@ -134,10 +134,10 @@ LPH_JIT_MAX(function()
 			end;
 		end;
 
-		if not BypassCheck1 then 
-			Client:Kick("Failed to load. 0x01");
-			return
-		end;
+		--if not BypassCheck1 then 
+			--Client:Kick("Failed to load. 0x01");
+			--return
+		--end;
 		Log("Bypass #1 Loaded.")
 		Log("Loading Bypass #2...")
 
@@ -182,10 +182,10 @@ LPH_JIT_MAX(function()
 			end;
 		end;
 
-		if not BypassCheck2 then 
-			Client:Kick("Failed to load. 0x02");
-			return
-		else 
+		--if not BypassCheck2 then 
+			--Client:Kick("Failed to load. 0x02");
+			--return
+		--else 
 			print("init ez ez")
 		end; 
 
@@ -12601,4 +12601,5 @@ if Modules then
 	end);
 end;
 Log("All hooks loaded!")
+
 --#endregion Hooks
