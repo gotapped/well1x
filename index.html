@@ -18,17 +18,17 @@
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body {
-      height:100vh;
       font-family: Inter, sans-serif;
       background: radial-gradient(circle at top left, #1a1a25, transparent 50%),
                   radial-gradient(circle at bottom right, #221626, transparent 50%),
                   linear-gradient(180deg,var(--bg),var(--bg2));
       color:var(--text);
-      overflow:hidden;
+      overflow-x:hidden;
+      scroll-behavior: smooth;
     }
 
     #loader {
-      position:fixed;top:0;left:0;width:100%;height:100%;
+      position:fixed;top:0;left:0;width:100%;height:100vh;
       display:flex;align-items:center;justify-content:center;
       background:linear-gradient(180deg,var(--bg),var(--bg2));
       z-index:100;
@@ -58,20 +58,32 @@
       position:fixed;top:0;left:0;right:0;
       display:flex;gap:24px;align-items:center;
       padding:16px 40px;
-      background:rgba(10,10,15,0.6);
-      backdrop-filter:blur(6px);
+      background:rgba(10,10,15,0.8);
+      backdrop-filter:blur(10px);
       z-index:50;
+      transition: all 0.3s ease;
     }
     nav .brand {font-weight:900;letter-spacing:.1em;color:#bbb;text-transform:uppercase;margin-right:auto;cursor:pointer}
     nav a {color:#dfe3ec;text-decoration:none;font-weight:600;transition:.3s;cursor:pointer}
     nav a:hover {transform:scale(1.05);color:#fff}
     nav a.active {color:var(--accentA);border-bottom:2px solid var(--accentA)}
 
-    header.hero {
+    .section {
       min-height:100vh;
-      display:flex;align-items:center;justify-content:center;
-      flex-direction:column;text-align:center;
-      padding:0 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      text-align:center;
+      padding:80px 40px 40px;
+      position:relative;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: radial-gradient(circle at top left, #1a1a25, transparent 50%),
+                  radial-gradient(circle at bottom right, #221626, transparent 50%),
+                  linear-gradient(180deg,var(--bg),var(--bg2));
     }
     .headline {
       font-family:'Space Grotesk',sans-serif;
@@ -105,149 +117,7 @@
       transition:.3s;
     }
     .cta:hover {transform:scale(1.08);background:linear-gradient(90deg,rgba(124,192,255,.3),rgba(255,122,166,.3))}
-    footer {text-align:center;padding:60px 20px;color:#888;position:relative;z-index:10}
-    
-    .bottom-nav {
-      position:fixed;
-      bottom:30px;
-      left:50%;
-      transform:translateX(-50%);
-      display:flex;
-      gap:15px;
-      z-index:50;
-      background:rgba(10,10,15,0.8);
-      padding:15px 25px;
-      border-radius:25px;
-      backdrop-filter:blur(10px);
-      border:1px solid rgba(255,255,255,0.1);
-    }
-    .nav-arrow {
-      width:60px;
-      height:60px;
-      background:linear-gradient(135deg,rgba(124,192,255,0.2),rgba(255,122,166,0.2));
-      border:1px solid rgba(255,255,255,0.2);
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition:all 0.3s ease;
-      color:#fff;
-      font-size:22px;
-    }
-    .nav-arrow:hover {
-      transform:scale(1.1);
-      background:linear-gradient(135deg,rgba(124,192,255,0.4),rgba(255,122,166,0.4));
-      box-shadow:0 0 20px rgba(124,192,255,0.3);
-    }
-    .nav-arrow.active {
-      background:linear-gradient(135deg,var(--accentA),var(--accentB));
-      box-shadow:0 0 25px rgba(124,192,255,0.4);
-    }
-    .nav-arrow.home {
-      width:60px;
-      height:60px;
-      font-size:24px;
-      font-weight:bold;
-    }
 
-    .section, .page {
-      min-height:100vh;
-      padding:80px 40px 40px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-    }
-    .section h2, .page h2 {
-      font-size:48px;
-      margin-bottom:20px;
-      color:var(--accentA);
-    }
-    .section p, .page p {
-      max-width:600px;
-      text-align:center;
-      line-height:1.6;
-      color:var(--muted);
-      margin-bottom:20px;
-    }
-    
-    .page {
-      display:none;
-    }
-    .page.active {
-      display:flex;
-    }
-    .hero {
-      display:flex;
-    }
-    .hero.hidden {
-      display:none;
-    }
-    
-    .feature-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:20px;
-      margin:40px 0;
-      width:100%;
-      max-width:900px;
-    }
-    .feature-card {
-      background:rgba(255,255,255,0.05);
-      padding:30px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.1);
-      transition:.3s;
-      text-align:center;
-    }
-    .feature-card:hover {
-      transform:translateY(-5px);
-      background:rgba(255,255,255,0.08);
-      border-color:var(--accentA);
-    }
-    .feature-card.premium {
-      background:linear-gradient(135deg,rgba(124,192,255,0.1),rgba(255,122,166,0.1));
-      border:2px solid var(--accentA);
-      transform:translateY(0px);
-      box-shadow:0 10px 30px rgba(124,192,255,0.2);
-    }
-    .feature-card.premium::before {
-      content:"⭐ RECOMMENDED";
-      position:absolute;
-      top:-10px;
-      left:50%;
-      transform:translateX(-50%);
-      background:linear-gradient(90deg,var(--accentA),var(--accentB));
-      color:#fff;
-      padding:5px 15px;
-      border-radius:15px;
-      font-size:12px;
-      font-weight:bold;
-      letter-spacing:1px;
-    }
-    .feature-card.premium {
-      position:relative;
-    }
-    .feature-card h3 {
-      color:var(--accentA);
-      margin-bottom:15px;
-      font-size:20px;
-    }
-    .feature-card p {
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.5;
-    }
-    .feature-card a {
-      color:var(--accentA);
-      text-decoration:none;
-      font-weight:600;
-    }
-    .feature-card a:hover {
-      color:#fff;
-    }
-    
     .game-images {
       display:flex;
       gap:20px;
@@ -273,6 +143,150 @@
       height:100%;
       object-fit:cover;
     }
+
+    /* Section Styles */
+    .section h2 {
+      font-size:48px;
+      margin-bottom:30px;
+      color:var(--accentA);
+    }
+    .section p {
+      max-width:600px;
+      text-align:center;
+      line-height:1.6;
+      color:var(--muted);
+      margin-bottom:20px;
+      font-size:18px;
+    }
+
+    .feature-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+      margin:40px 0;
+      width:100%;
+      max-width:1000px;
+    }
+    .feature-card {
+      background:rgba(255,255,255,0.05);
+      padding:30px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.1);
+      transition:.3s;
+      text-align:center;
+    }
+    .feature-card:hover {
+      transform:translateY(-5px);
+      background:rgba(255,255,255,0.08);
+      border-color:var(--accentA);
+    }
+    .feature-card.premium {
+      background:linear-gradient(135deg,rgba(124,192,255,0.1),rgba(255,122,166,0.1));
+      border:2px solid var(--accentA);
+      transform:translateY(0px);
+      box-shadow:0 10px 30px rgba(124,192,255,0.2);
+      position:relative;
+    }
+    .feature-card.premium::before {
+      content:"⭐ RECOMMENDED";
+      position:absolute;
+      top:-10px;
+      left:50%;
+      transform:translateX(-50%);
+      background:linear-gradient(90deg,var(--accentA),var(--accentB));
+      color:#fff;
+      padding:5px 15px;
+      border-radius:15px;
+      font-size:12px;
+      font-weight:bold;
+      letter-spacing:1px;
+    }
+    .feature-card h3 {
+      color:var(--accentA);
+      margin-bottom:15px;
+      font-size:20px;
+    }
+    .feature-card p {
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+    .feature-card a {
+      color:var(--accentA);
+      text-decoration:none;
+      font-weight:600;
+    }
+    .feature-card a:hover {
+      color:#fff;
+    }
+
+    /* Purchase section styling */
+    .purchase-info {
+      margin:30px 0 40px;
+      padding:25px;
+      background:rgba(255,255,255,0.05);
+      border-radius:15px;
+      border:1px solid rgba(255,122,166,0.3);
+      max-width:600px;
+    }
+    .purchase-info h3 {
+      color:var(--accentB);
+      margin-bottom:15px;
+    }
+    .purchase-info p {
+      color:var(--text);
+      line-height:1.6;
+      text-align:left;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position:absolute;
+      bottom:30px;
+      left:50%;
+      transform:translateX(-50%);
+      color:var(--muted);
+      font-size:14px;
+      animation:bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform:translateX(-50%) translateY(0)}
+      40% {transform:translateX(-50%) translateY(-10px)}
+      60% {transform:translateX(-50%) translateY(-5px)}
+    }
+
+    /* Alternative section backgrounds */
+    .section:nth-child(even) {
+      background: radial-gradient(circle at bottom left, #1a1a25, transparent 50%),
+                  radial-gradient(circle at top right, #221626, transparent 50%),
+                  linear-gradient(180deg,var(--bg2),var(--bg));
+    }
+
+    footer {
+      text-align:center;
+      padding:40px 20px;
+      color:#888;
+      background:var(--bg);
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding:60px 20px 20px;
+      }
+      .feature-grid {
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+      .game-images {
+        flex-direction:column;
+        align-items:center;
+      }
+      .game-img {
+        width:300px;
+        height:160px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -283,16 +297,17 @@
 
   <div class="content" id="content">
     <nav>
-      <span class="brand" onclick="showHome()">Monster.k69</span>
-      <a onclick="showHome()">Home</a>
-      <a onclick="showPage('about')">About</a>
-      <a onclick="showPage('features')">Features</a>
-      <a onclick="showPage('debug')">Debug</a>
-      <a onclick="showPage('purchase')">Purchase</a>
-      <a onclick="showPage('contact')">Contact</a>
+      <span class="brand">Monster.k69</span>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#debug">Debug</a>
+      <a href="#purchase">Purchase</a>
+      <a href="#contact">Contact</a>
     </nav>
 
-    <header class="hero" id="home">
+    <!-- Home Section -->
+    <section class="section hero" id="home">
       <h1 class="headline">MONSTER.K69</h1>
       <div class="tagline">PUBLIC SCRIPT FOR TRIDENT AND LONE SURVIVAL</div>
       <div class="game-images">
@@ -303,10 +318,12 @@
           <img src="https://tr.rbxcdn.com/180DAY-4b779de8e42f37b5616c5183b7552718/500/280/Image/Jpeg/noFilter" alt="Lone Survival Game">
         </div>
       </div>
-      <a class="cta" onclick="showPage('purchase')">Get Started</a>
-    </header>
+      <a class="cta" href="#purchase">Get Started</a>
+      <div class="scroll-indicator">Scroll down to explore ↓</div>
+    </section>
 
-    <div class="page" id="about">
+    <!-- About Section -->
+    <section class="section" id="about">
       <h2>About Monster.k69</h2>
       <p>Monster.k69 is a cutting-edge public script specifically designed for Trident and Lone Survival games. Our advanced algorithms provide enhanced gameplay experience with optimal performance and reliability.</p>
       <p>Built by experienced developers, this script offers seamless integration and powerful features that elevate your gaming experience to the next level.</p>
@@ -319,121 +336,123 @@
           <h3>Easy Integration</h3>
           <p>Simple installation process with comprehensive documentation.</p>
         </div>
+        <div class="feature-card">
+          <h3>Regular Updates</h3>
+          <p>Constant improvements and new features based on community feedback.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Community Support</h3>
+          <p>Active Discord community with helpful developers and experienced users.</p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="page" id="features">
+    <!-- Features Section -->
+    <section class="section" id="features">
       <h2>Advanced Features</h2>
       <p>Discover the powerful capabilities that make Monster.k69 the ultimate choice for serious gamers.</p>
       <div class="feature-grid">
         <div class="feature-card">
-          <h3>Combat</h3>
-          <p>Precision targeting with customizable sensitivity settings for optimal accuracy.</p>
+          <h3>Combat Enhancement</h3>
+          <p>Precision targeting with customizable sensitivity settings for optimal accuracy in combat situations.</p>
         </div>
         <div class="feature-card">
-          <h3>ESP aka Wallhack aka Visuals</h3>
-          <p>a cheat that displays players position, boxes, names, health, and weapons to give a clear visual advantage.</p>
+          <h3>ESP / Wallhack / Visuals</h3>
+          <p>Advanced visual enhancement that displays player positions, boxes, names, health, and weapons for clear tactical advantage.</p>
         </div>
         <div class="feature-card">
-          <h3>Miscellaneous</h3>
-          <p>Speedhack etc etc.</p>
+          <h3>Movement & Misc</h3>
+          <p>Speed modifications, teleportation, and other quality-of-life improvements for enhanced gameplay.</p>
         </div>
         <div class="feature-card">
-          <h3>Settings</h3>
-          <p>Make a config, set your cheat and enjoy gameplay!</p>
+          <h3>Configuration System</h3>
+          <p>Save and load custom configurations to quickly switch between different setups and preferences.</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="page" id="debug">
+    <!-- Debug Section -->
+    <section class="section" id="debug">
       <h2>Debug & Troubleshooting</h2>
       <p>Our comprehensive debugging tools help you identify and resolve issues quickly, ensuring smooth operation of the script in any environment.</p>
       <div class="feature-grid">
         <div class="feature-card">
           <h3>Error Logging</h3>
-          <p>Detailed error reports with timestamp and context information.</p>
+          <p>Detailed error reports with timestamp and context information for easy troubleshooting.</p>
         </div>
         <div class="feature-card">
           <h3>Performance Monitor</h3>
-          <p>Real-time performance tracking and optimization suggestions.</p>
+          <p>Real-time performance tracking and optimization suggestions to maintain peak performance.</p>
         </div>
         <div class="feature-card">
           <h3>Compatibility Check</h3>
-          <p>Automatic system compatibility verification and recommendations.</p>
+          <p>Automatic system compatibility verification and recommendations for optimal setup.</p>
         </div>
         <div class="feature-card">
           <h3>Live Support</h3>
-          <p>24/7 technical support with remote assistance capabilities.</p>
+          <p>24/7 technical support with remote assistance capabilities through our Discord community.</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="page" id="purchase">
+    <!-- Purchase Section -->
+    <section class="section" id="purchase">
       <h2>Purchase Monster.k69</h2>
       <p>Get access to Monster.k69 premium script with full features and lifetime updates.</p>
-      <div style="margin:30px 0 40px;padding:20px;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(255,122,166,0.3);">
-        <h3 style="color:var(--accentB);margin-bottom:15px;">✨ What's Included:</h3>
-        <p style="color:var(--text);line-height:1.6;">
+      <div class="purchase-info">
+        <h3>✨ What's Included:</h3>
+        <p>
           • Lifetime access to Monster.k69 script<br>
-          • All premium features and rep<br>
+          • All premium features and updates<br>
           • Regular updates and new features<br>
-          • Priority support in tickets<br>
-          • Help with cheat and free configs<br>
+          • Priority support in Discord tickets<br>
+          • Help with setup and free configurations<br>
         </p>
       </div>
       <div class="feature-grid">
         <div class="feature-card premium">
-          <h3>All Countries</h3>
+          <h3>International Payment</h3>
           <p>Pay with credit card, PayPal, or cryptocurrency through our secure payment platform.</p>
           <p style="font-size:24px;color:var(--accentA);font-weight:bold;margin:15px 0;">$3.99</p>
-          <p><a href="https://funpay.com/lots/offer?id=41721462" target="_blank" style="background:linear-gradient(90deg,var(--accentA),var(--accentB));padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Buy Now - USA</a></p>
+          <p><a href="https://funpay.com/lots/offer?id=41721462" target="_blank" style="background:linear-gradient(90deg,var(--accentA),var(--accentB));padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Buy Now - USD</a></p>
         </div>
         <div class="feature-card premium">
-          <h3>Russia</h3>
+          <h3>Russia Payment</h3>
           <p>Оплата в рублях через безопасную платформу. Поддержка карт РФ и популярных платежных систем.</p>
           <p style="font-size:24px;color:var(--accentA);font-weight:bold;margin:15px 0;">340₽</p>
           <p><a href="https://funpay.com/lots/offer?id=41721462" target="_blank" style="background:linear-gradient(90deg,var(--accentA),var(--accentB));padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Купить - RUB</a></p>
         </div>
         <div class="feature-card">
-          <h3>🎮 Robux</h3>
-          <p>Pay using Roblox Robux in-game currency purchase. Perfect for younger users.</p>
+          <h3>🎮 Robux Payment</h3>
+          <p>Pay using Roblox Robux in-game currency. Perfect for users who prefer in-game transactions.</p>
           <p style="font-size:24px;color:var(--accentA);font-weight:bold;margin:15px 0;">750 R$</p>
           <p><a href="https://www.roblox.com/game-pass/1414506021/donate-me" target="_blank" style="background:linear-gradient(90deg,rgba(76,175,80,0.8),rgba(139,195,74,0.8));padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Pay with Robux</a></p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="page" id="contact">
-      <h2>Contact us</h2>
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <h2>Contact & Support</h2>
       <p>Have questions or need support? Our team is here to help you get the most out of Monster.k69.</p>
       <div class="feature-grid">
         <div class="feature-card">
           <h3>Discord Community</h3>
-          <p>Join our active community for tips, updates, and direct support from our team.</p>
-          <p><a href="https://discord.gg/vJBNXwRbzz" target="_blank">Join Discord Server</a></p>
+          <p>Join our active community for tips, updates, and direct support from our development team and experienced users.</p>
+          <p><a href="https://discord.gg/vJBNXwRbzz" target="_blank" style="background:linear-gradient(90deg,#5865f2,#7289da);padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Join Discord Server</a></p>
         </div>
         <div class="feature-card">
           <h3>GitHub Repository</h3>
-          <p>Access source code, report issues, and contribute to the project development.</p>
-          <p><a href="https://github.com/flog-gok" target="_blank">Visit GitHub</a></p>
+          <p>Access source code, report issues, and contribute to the project development on our official repository.</p>
+          <p><a href="https://github.com/flog-gok" target="_blank" style="background:linear-gradient(90deg,#24292e,#4a4a4a);padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Visit GitHub</a></p>
         </div>
       </div>
-    </div>
+    </section>
 
     <footer>
       <p>© 2025 Monster.k69. All rights reserved.</p>
       <p style="font-size:12px;color:#666;margin-top:8px;opacity:0.8;font-style:italic;">marine.alpha в разработке</p>
     </footer>
-
-    <div class="bottom-nav">
-      <div class="nav-arrow home active" onclick="showHome()" title="Home">🏠</div>
-      <div class="nav-arrow" onclick="showPage('about')" title="About">ℹ️</div>
-      <div class="nav-arrow" onclick="showPage('features')" title="Features">⚡</div>
-      <div class="nav-arrow" onclick="showPage('purchase')" title="Purchase">
-  <span style="vertical-align: 8px;">🗃️</span>
-</div>
-      <div class="nav-arrow" onclick="showPage('contact')" title="Contact">📧</div>
-    </div>
   </div>
 
   <script>
@@ -450,54 +469,52 @@
         loader.style.display = "none";
         content.classList.add('show');
       }
-    }, 10);
+    }, 8);
 
-    function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
       });
-      document.getElementById('home').classList.add('hidden');
+    });
+
+    // Active navigation indicator
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.section');
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
       
-      document.getElementById(pageId).classList.add('active');
-      
-      document.querySelectorAll('nav a').forEach(link => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
         link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
       });
-      if (event.target.closest('nav')) {
-        event.target.classList.add('active');
+    });
+
+    // Hide scroll indicator after first scroll
+    let scrolled = false;
+    window.addEventListener('scroll', () => {
+      if (!scrolled) {
+        scrolled = true;
+        document.querySelector('.scroll-indicator').style.opacity = '0';
       }
-      
-      document.querySelectorAll('.nav-arrow').forEach(arrow => {
-        arrow.classList.remove('active');
-      });
-      event.target.classList.add('active');
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showHome() {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      
-      document.getElementById('home').classList.remove('hidden');
-      
-      document.querySelectorAll('nav a').forEach(link => {
-        link.classList.remove('active');
-      });
-      
-      document.querySelectorAll('.nav-arrow').forEach(arrow => {
-        arrow.classList.remove('active');
-      });
-      document.querySelector('.nav-arrow.home').classList.add('active');
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('home').classList.remove('hidden');
     });
   </script>
 </body>
 </html>
-
