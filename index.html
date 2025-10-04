@@ -6,16 +6,16 @@
   <title>Monster & Synapse — Trident & Rost Alpha</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Source+Code+Pro:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --orange: #ff9900;
-      --bg: #0a0a0f;
-      --bg2: #141420;
-      --text: #e7e7ee;
-      --muted: #9aa0a6;
-      --accent-blue: #7cc0ff;
-      --accent-pink: #ff7aa6;
+      --red: #cc0000;
+      --dark-red: #8b0000;
+      --bg: #000000;
+      --bg2: #0a0a0a;
+      --text: #ffffff;
+      --muted: #999999;
+      --blood: #ff0000;
     }
 
     * {
@@ -25,35 +25,37 @@
     }
 
     body {
-      font-family: 'Press Start 2P', monospace;
-      background: linear-gradient(45deg, #0d0d0d, #1a1a1a, #0d0d0d);
-      background-size: 400% 400%;
-      animation: gradientShift 8s ease infinite;
+      font-family: 'Source Code Pro', monospace;
+      background: #000000;
       color: var(--text);
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     /* Loader */
     #loader {
-      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
     }
 
     .circle {
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      border: 6px solid rgba(255, 153, 0, 0.1);
-      border-top: 6px solid var(--orange);
+      border: 6px solid rgba(204, 0, 0, 0.1);
+      border-top: 6px solid var(--red);
       animation: spin 1.2s linear infinite;
       margin-bottom: 20px;
-      box-shadow: 0 0 20px var(--orange);
+      box-shadow: 0 0 20px var(--red);
     }
 
     @keyframes spin {
@@ -65,20 +67,14 @@
       font-size: 22px;
       font-weight: 700;
       letter-spacing: 2px;
-      color: var(--orange);
-      text-shadow: 0 0 10px var(--orange);
-      animation: textGlow 4s ease-in-out infinite;
-    }
-
-    @keyframes textGlow {
-      0%, 100% { text-shadow: 0 0 10px var(--orange); }
-      50% { text-shadow: 0 0 20px var(--orange), 0 0 30px rgba(255, 153, 0, 0.5); }
+      color: var(--red);
+      text-shadow: 0 0 10px var(--red);
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .content {
-      opacity: 1;
+      opacity: 0;
       transition: opacity 1s ease;
-      animation: flicker 8s infinite alternate;
     }
     .content.show {
       opacity: 1;
@@ -94,33 +90,29 @@
       gap: 24px;
       align-items: center;
       padding: 16px 40px;
-      background: rgba(13, 13, 13, 0.9);
+      background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(15px);
-      border-bottom: 2px solid var(--orange);
+      border-bottom: 2px solid var(--red);
       z-index: 50;
       transition: all 0.3s ease;
-      font-size: 10px;
+      font-size: 11px;
     }
 
     nav .brand {
       font-weight: 900;
       letter-spacing: 0.1em;
-      color: var(--orange);
+      color: var(--red);
       text-transform: uppercase;
       margin-right: auto;
       cursor: pointer;
-      text-shadow: 0 0 10px var(--orange);
-      animation: brandGlow 3s ease-in-out infinite;
+      text-shadow: 0 0 10px var(--red);
+      font-family: 'JetBrains Mono', monospace;
       transition: transform 0.3s ease;
     }
 
     nav .brand:hover {
-      transform: scale(1.05) rotate(-1deg);
-    }
-
-    @keyframes brandGlow {
-      0%, 100% { text-shadow: 0 0 10px var(--orange); }
-      50% { text-shadow: 0 0 20px var(--orange), 0 0 30px rgba(255, 153, 0, 0.5); }
+      transform: scale(1.05);
+      color: var(--blood);
     }
 
     nav a {
@@ -131,19 +123,20 @@
       cursor: pointer;
       padding: 8px 12px;
       border-radius: 4px;
+      font-family: 'Source Code Pro', monospace;
     }
 
     nav a:hover {
       transform: scale(1.05);
-      color: var(--orange);
-      background: rgba(255, 153, 0, 0.1);
-      text-shadow: 0 0 5px var(--orange);
+      color: var(--red);
+      background: rgba(204, 0, 0, 0.1);
+      text-shadow: 0 0 5px var(--red);
     }
 
     nav a.active {
-      color: var(--orange);
-      border-bottom: 2px solid var(--orange);
-      text-shadow: 0 0 10px var(--orange);
+      color: var(--red);
+      border-bottom: 2px solid var(--red);
+      text-shadow: 0 0 10px var(--red);
     }
 
     .section {
@@ -157,46 +150,50 @@
       position: relative;
       transition: transform 0.15s ease-out;
       transform-style: preserve-3d;
-      animation: flicker 8s infinite alternate;
-    }
-
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      10% { opacity: 0.95; }
-      20% { opacity: 0.85; }
-      30% { opacity: 1; }
-      40% { opacity: 0.9; }
-      50% { opacity: 1; }
-      60% { opacity: 0.95; }
-      70% { opacity: 1; }
-      80% { opacity: 1; }
-      90% { opacity: 0.9; }
     }
 
     /* Hero Section */
     .hero {
-      background: radial-gradient(circle at top left, #1a1a25, transparent 50%),
-                  radial-gradient(circle at bottom right, #221626, transparent 50%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
+      background: linear-gradient(180deg, #000000, #0a0a0a);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 0, 0, 0.03) 2px,
+        rgba(255, 0, 0, 0.03) 4px
+      );
+      pointer-events: none;
     }
 
     .headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(60px, 12vw, 200px);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(60px, 12vw, 180px);
       font-weight: 900;
       text-transform: uppercase;
-      color: transparent;
-      background: linear-gradient(90deg, var(--orange), #ffcc00, var(--orange));
-      -webkit-background-clip: text;
-      background-clip: text;
-      filter: drop-shadow(0 0 20px rgba(255, 153, 0, 0.3))
-             drop-shadow(0 0 30px rgba(255, 153, 0, 0.2));
+      color: var(--red);
+      text-shadow: 0 0 20px var(--red),
+                   0 0 40px rgba(204, 0, 0, 0.5),
+                   2px 2px 0px rgba(0, 0, 0, 0.8);
       transition: all 0.3s ease;
-      animation: titleEntry 2s ease-out 0.9s both, titleGlow 3s ease-in-out infinite 2s;
+      animation: titleEntry 2s ease-out 0.9s both;
+      letter-spacing: -0.02em;
     }
 
     .headline:hover {
-      transform: scale(1.05) rotate(-1deg);
+      transform: scale(1.02);
+      text-shadow: 0 0 30px var(--blood),
+                   0 0 50px rgba(255, 0, 0, 0.5),
+                   2px 2px 0px rgba(0, 0, 0, 0.8);
     }
 
     @keyframes titleEntry {
@@ -204,24 +201,20 @@
       100% { transform: translateY(0) scale(1); opacity: 1; }
     }
 
-    @keyframes titleGlow {
-      0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 153, 0, 0.3)); }
-      50% { filter: drop-shadow(0 0 40px rgba(255, 153, 0, 0.6)); }
-    }
-
     .tagline {
       margin: 20px 0 40px;
-      font-size: 12px;
-      letter-spacing: 0.3em;
-      color: #b7c0cf;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: #cccccc;
       transition: all 0.3s ease;
       animation: subtitleSlide 2s ease-out 1.2s both;
       text-transform: uppercase;
+      font-family: 'Courier Prime', monospace;
     }
 
     .tagline:hover {
       transform: scale(1.05);
-      color: var(--orange);
+      color: var(--red);
     }
 
     @keyframes subtitleSlide {
@@ -231,38 +224,34 @@
 
     .cta {
       padding: 16px 42px;
-      font-weight: 800;
-      border-radius: 8px;
+      font-weight: 700;
+      border-radius: 4px;
       text-decoration: none;
-      color: black;
-      background: linear-gradient(90deg, var(--orange), #ffcc00);
-      border: none;
+      color: white;
+      background: var(--red);
+      border: 2px solid var(--dark-red);
       transition: all 0.4s ease;
-      box-shadow: 0 0 12px var(--orange);
+      box-shadow: 0 0 12px var(--red);
       margin-top: 20px;
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      animation: buttonEntry 2s ease-out 1.5s both, buttonFloat 4s ease-in-out infinite 3s;
+      animation: buttonEntry 2s ease-out 1.5s both;
       position: relative;
       overflow: hidden;
     }
 
     .cta:hover {
-      background: linear-gradient(90deg, #e67e00, var(--orange));
-      transform: scale(1.1) translateY(-5px);
-      box-shadow: 0 10px 30px var(--orange), 0 0 50px rgba(255, 153, 0, 0.4);
+      background: var(--dark-red);
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 10px 30px var(--red), 0 0 50px rgba(204, 0, 0, 0.4);
+      border-color: var(--blood);
     }
 
     @keyframes buttonEntry {
       0% { transform: translateY(50px) scale(0.8); opacity: 0; }
       100% { transform: translateY(0) scale(1); opacity: 1; }
-    }
-
-    @keyframes buttonFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
     }
 
     .game-images {
@@ -282,17 +271,19 @@
     .game-img {
       width: 350px;
       height: 180px;
-      border-radius: 12px;
+      border-radius: 4px;
       overflow: hidden;
-      border: 2px solid var(--orange);
+      border: 2px solid var(--red);
       transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(255, 153, 0, 0.3);
+      box-shadow: 0 0 20px rgba(204, 0, 0, 0.3);
+      filter: grayscale(0.3) contrast(1.1);
     }
 
     .game-img:hover {
       transform: scale(1.05) translateY(-5px);
-      border-color: #ffcc00;
-      box-shadow: 0 10px 30px rgba(255, 153, 0, 0.5);
+      border-color: var(--blood);
+      box-shadow: 0 10px 30px rgba(204, 0, 0, 0.5);
+      filter: grayscale(0) contrast(1.2);
     }
 
     .game-img img {
@@ -303,26 +294,29 @@
 
     /* Section Styles */
     .section h2 {
-      font-size: 32px;
+      font-size: 36px;
       margin-bottom: 30px;
-      color: var(--orange);
-      text-shadow: 0 0 15px var(--orange);
-      animation: textGlow 4s ease-in-out infinite;
+      color: var(--red);
+      text-shadow: 0 0 15px var(--red);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       transition: transform 0.3s ease;
     }
 
     .section h2:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
+      color: var(--blood);
     }
 
     .section p {
-      max-width: 600px;
+      max-width: 700px;
       text-align: center;
       line-height: 1.8;
-      color: var(--muted);
+      color: #cccccc;
       margin-bottom: 20px;
-      font-size: 10px;
-      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-family: 'Courier Prime', monospace;
     }
 
     .feature-grid {
@@ -335,80 +329,79 @@
     }
 
     .feature-card {
-      background: rgba(255, 153, 0, 0.05);
+      background: rgba(204, 0, 0, 0.05);
       padding: 30px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 153, 0, 0.2);
+      border-radius: 4px;
+      border: 1px solid rgba(204, 0, 0, 0.3);
       transition: all 0.3s ease;
       text-align: center;
-      animation: cardFlicker 6s infinite alternate;
     }
 
     .feature-card:hover {
       transform: translateY(-10px) scale(1.02);
-      background: rgba(255, 153, 0, 0.08);
-      border-color: var(--orange);
-      box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3);
+      background: rgba(204, 0, 0, 0.1);
+      border-color: var(--red);
+      box-shadow: 0 10px 30px rgba(204, 0, 0, 0.3);
     }
 
     .feature-card.premium {
-      background: linear-gradient(135deg, rgba(255, 153, 0, 0.1), rgba(255, 204, 0, 0.1));
-      border: 2px solid var(--orange);
+      background: rgba(204, 0, 0, 0.15);
+      border: 2px solid var(--red);
       transform: translateY(0px);
-      box-shadow: 0 10px 30px rgba(255, 153, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(204, 0, 0, 0.2);
       position: relative;
     }
 
     .feature-card.premium::before {
-      content: "⭐ RECOMMENDED";
+      content: "⚠ RECOMMENDED";
       position: absolute;
       top: -10px;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(90deg, var(--orange), #ffcc00);
-      color: #000;
+      background: var(--red);
+      color: #fff;
       padding: 5px 15px;
-      border-radius: 15px;
-      font-size: 8px;
+      border-radius: 3px;
+      font-size: 9px;
       font-weight: bold;
       letter-spacing: 1px;
       text-shadow: none;
-    }
-
-    @keyframes cardFlicker {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.95; }
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .feature-card h3 {
-      color: var(--orange);
+      color: var(--red);
       margin-bottom: 15px;
-      font-size: 14px;
-      text-shadow: 0 0 5px var(--orange);
+      font-size: 16px;
+      text-shadow: 0 0 5px var(--red);
       transition: transform 0.3s ease;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
     }
 
     .feature-card h3:hover {
       transform: translateX(5px);
+      color: var(--blood);
     }
 
     .feature-card p {
-      color: var(--muted);
-      font-size: 10px;
+      color: #cccccc;
+      font-size: 12px;
       line-height: 1.6;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier Prime', monospace;
     }
 
     .feature-card a {
-      color: var(--orange);
+      color: var(--red);
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s ease;
+      font-family: 'Source Code Pro', monospace;
     }
 
     .feature-card a:hover {
-      color: #ffcc00;
-      text-shadow: 0 0 5px var(--orange);
+      color: var(--blood);
+      text-shadow: 0 0 5px var(--red);
       transform: scale(1.05);
     }
 
@@ -416,23 +409,24 @@
     .purchase-info {
       margin: 30px 0 40px;
       padding: 25px;
-      background: rgba(255, 153, 0, 0.05);
-      border-radius: 15px;
-      border: 1px solid rgba(255, 153, 0, 0.3);
+      background: rgba(204, 0, 0, 0.05);
+      border-radius: 4px;
+      border: 1px solid rgba(204, 0, 0, 0.3);
       max-width: 600px;
-      animation: cardFlicker 6s infinite alternate;
     }
 
     .purchase-info h3 {
-      color: var(--orange);
+      color: var(--red);
       margin-bottom: 15px;
-      text-shadow: 0 0 10px var(--orange);
+      text-shadow: 0 0 10px var(--red);
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .purchase-info p {
-      color: var(--text);
-      line-height: 1.6;
+      color: #ffffff;
+      line-height: 1.8;
       text-align: left;
+      font-family: 'Courier Prime', monospace;
     }
 
     /* Scroll indicator */
@@ -441,10 +435,12 @@
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
-      color: var(--orange);
-      font-size: 10px;
+      color: var(--red);
+      font-size: 11px;
       animation: bounce 2s infinite;
-      text-shadow: 0 0 5px var(--orange);
+      text-shadow: 0 0 5px var(--red);
+      transition: opacity 0.5s ease;
+      font-family: 'Source Code Pro', monospace;
     }
 
     @keyframes bounce {
@@ -453,20 +449,9 @@
       60% { transform: translateX(-50%) translateY(-5px); }
     }
 
-    /* Overlay */
-    .overlay {
-      display: none;
-    }
-
-    .click-text {
-      display: none;
-    }
-
     /* Alternative section backgrounds */
     .section:nth-child(even) {
-      background: radial-gradient(circle at bottom left, #1a1a25, transparent 50%),
-                  radial-gradient(circle at top right, #221626, transparent 50%),
-                  linear-gradient(180deg, var(--bg2), var(--bg));
+      background: linear-gradient(180deg, #0a0a0a, #000000);
     }
 
     footer {
@@ -474,8 +459,9 @@
       padding: 40px 20px;
       color: #666;
       background: var(--bg);
-      border-top: 1px solid rgba(255, 153, 0, 0.2);
-      font-size: 10px;
+      border-top: 1px solid rgba(204, 0, 0, 0.2);
+      font-size: 11px;
+      font-family: 'Courier Prime', monospace;
     }
 
     footer:hover {
@@ -499,14 +485,13 @@
         height: 160px;
       }
       nav {
-        font-size: 8px;
+        font-size: 9px;
         padding: 12px 20px;
       }
     }
   </style>
 </head>
 <body>
-
 
   <div id="loader">
     <div class="circle"></div>
@@ -515,7 +500,7 @@
 
   <div class="content" id="content">
     <nav>
-      <span class="brand">Monster.k69</span>
+      <span class="brand">MONSTER</span>
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#features">Features</a>
@@ -526,24 +511,24 @@
 
     <!-- Home Section -->
     <section class="section hero" id="home">
-      <h1 class="headline">MONSTER.K69</h1>
-      <div class="tagline">PUBLIC SCRIPT FOR TRIDENT AND LONE SURVIVAL</div>
+      <h1 class="headline">MONSTER</h1>
+      <div class="tagline">PUBLIC SCRIPT FOR TRIDENT AND ROST ALPHA</div>
       <div class="game-images">
         <div class="game-img">
           <img src="https://tr.rbxcdn.com/180DAY-6da8fbbf683908522709af7f43ecafb2/500/280/Image/Jpeg/noFilter" alt="Trident Game">
         </div>
         <div class="game-img">
-          <img src="https://i.ytimg.com/vi/BsEWloF1Rm0/sddefault.jpg" alt="Lone Survival Game">
+          <img src="https://i.ytimg.com/vi/BsEWloF1Rm0/sddefault.jpg" alt="Rost Alpha">
         </div>
       </div>
-      <a class="cta" href="#purchase">Get Started</a>
-      <div class="scroll-indicator">Листайте вниз чтобы увидеть все ↓</div>
+      <a href="#purchase" class="cta">Get Started Now</a>
+      <div class="scroll-indicator">↓ SCROLL DOWN ↓</div>
     </section>
 
     <!-- About Section -->
     <section class="section" id="about">
-      <h2>About Monster.k69</h2>
-      <p>Monster.k69 is a cutting-edge public script specifically designed for Trident and Lone Survival games. Our advanced algorithms provide enhanced gameplay experience with optimal performance and reliability.</p>
+      <h2>About Monster</h2>
+      <p>Monster is a cutting-edge public script specifically designed for Trident and Rost alpha games. Our advanced algorithms provide enhanced gameplay experience with optimal performance and reliability.</p>
       <p>Built by experienced developers, this script offers seamless integration and powerful features that elevate your gaming experience to the next level.</p>
       <div class="feature-grid">
         <div class="feature-card">
@@ -568,7 +553,7 @@
     <!-- Features Section -->
     <section class="section" id="features">
       <h2>Advanced Features</h2>
-      <p>Discover the powerful capabilities that make Monster.k69 the ultimate choice for serious gamers.</p>
+      <p>Discover the powerful capabilities that make Monster the ultimate choice for serious gamers.</p>
       <div class="feature-grid">
         <div class="feature-card">
           <h3>Combat Enhancement</h3>
@@ -615,10 +600,10 @@
 
     <!-- Purchase Section -->
     <section class="section" id="purchase">
-      <h2>Purchase Monster.k69</h2>
-      <p>Get access to Monster.k69 premium script with full features and lifetime updates.</p>
+      <h2>Purchase Monster</h2>
+      <p>Get access to Monster premium script with full features and lifetime updates.</p>
       <div class="purchase-info">
-        <h3>✨ What's Included:</h3>
+        <h3>⚠ What's Included:</h3>
         <p>
           • Lifetime access to Monster.k69 script<br>
           • All premium features and updates<br>
@@ -631,20 +616,20 @@
         <div class="feature-card premium">
           <h3>International Payment</h3>
           <p>Pay with credit card, PayPal, or cryptocurrency through our secure payment platform.</p>
-          <p style="font-size:24px;color:var(--orange);font-weight:bold;margin:15px 0;">$3.99</p>
-          <p><a href="https://funpay.com/lots/offer?id=41721462" target="_blank" style="background:linear-gradient(90deg,var(--orange),#ffcc00);padding:12px 24px;border-radius:8px;text-decoration:none;color:#000;font-weight:bold;">Buy Now - USD</a></p>
+          <p style="font-size:28px;color:var(--red);font-weight:bold;margin:15px 0;font-family:'JetBrains Mono',monospace;">$3.99</p>
+          <p><a href="https://funpay.com/lots/offer?id=41721462" target="_blank" style="background:var(--red);padding:12px 24px;border-radius:4px;text-decoration:none;color:#fff;font-weight:bold;display:inline-block;border:2px solid var(--dark-red);">BUY NOW - USD</a></p>
         </div>
         <div class="feature-card premium">
           <h3>Russia Payment</h3>
           <p>Оплата в рублях через безопасную платформу. Поддержка карт РФ и популярных платежных систем.</p>
-          <p style="font-size:24px;color:var(--orange);font-weight:bold;margin:15px 0;">340₽</p>
-          <p><a href="https://funpay.com/lots/offer?id=41721462" target="_blank" style="background:linear-gradient(90deg,var(--orange),#ffcc00);padding:12px 24px;border-radius:8px;text-decoration:none;color:#000;font-weight:bold;">Купить - RUB</a></p>
+          <p style="font-size:28px;color:var(--red);font-weight:bold;margin:15px 0;font-family:'JetBrains Mono',monospace;">340₽</p>
+          <p><a href="https://funpay.com/lots/offer?id=41721462" target="_blank" style="background:var(--red);padding:12px 24px;border-radius:4px;text-decoration:none;color:#fff;font-weight:bold;display:inline-block;border:2px solid var(--dark-red);">КУПИТЬ - RUB</a></p>
         </div>
         <div class="feature-card">
           <h3>🎮 Robux Payment</h3>
           <p>Pay using Roblox Robux in-game currency. Perfect for users who prefer in-game transactions.</p>
-          <p style="font-size:24px;color:var(--orange);font-weight:bold;margin:15px 0;">1000 R$</p>
-          <p><a href="https://www.roblox.com/game-pass/1414506021/donate-me" target="_blank" style="background:linear-gradient(90deg,rgba(76,175,80,0.8),rgba(139,195,74,0.8));padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Pay with Robux</a></p>
+          <p style="font-size:28px;color:var(--red);font-weight:bold;margin:15px 0;font-family:'JetBrains Mono',monospace;">1000 R$</p>
+          <p><a href="https://www.roblox.com/game-pass/1414506021/donate-me" target="_blank" style="background:#222;padding:12px 24px;border-radius:4px;text-decoration:none;color:#fff;font-weight:bold;display:inline-block;border:2px solid #444;">PAY WITH ROBUX</a></p>
         </div>
       </div>
     </section>
@@ -657,19 +642,19 @@
         <div class="feature-card">
           <h3>Discord Community</h3>
           <p>Join our active community for tips, updates, and direct support from our development team and experienced users.</p>
-          <p><a href="https://discord.gg/vJBNXwRbzz" target="_blank" style="background:linear-gradient(90deg,#5865f2,#7289da);padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Join Discord Server</a></p>
+          <p><a href="https://discord.gg/vJBNXwRbzz" target="_blank" style="background:#222;padding:12px 24px;border-radius:4px;text-decoration:none;color:#fff;font-weight:bold;display:inline-block;border:2px solid #444;margin-top:10px;">JOIN DISCORD</a></p>
         </div>
         <div class="feature-card">
           <h3>GitHub Repository</h3>
           <p>Access source code, report issues, and contribute to the project development on our official repository.</p>
-          <p><a href="https://github.com/flog-gok" target="_blank" style="background:linear-gradient(90deg,#24292e,#4a4a4a);padding:12px 24px;border-radius:8px;text-decoration:none;color:#fff;font-weight:bold;">Visit GitHub</a></p>
+          <p><a href="https://github.com/flog-gok" target="_blank" style="background:#222;padding:12px 24px;border-radius:4px;text-decoration:none;color:#fff;font-weight:bold;display:inline-block;border:2px solid #444;margin-top:10px;">VISIT GITHUB</a></p>
         </div>
       </div>
     </section>
 
     <footer>
       <p>© 2025 Monster.k69. All rights reserved.</p>
-      <p style="font-size:12px;color:#666;margin-top:8px;opacity:0.8;font-style:italic;">marine.alpha в разработке</p>
+      <p style="font-size:11px;color:#666;margin-top:8px;opacity:0.8;font-style:italic;">marine.alpha в разработке</p>
     </footer>
   </div>
 
@@ -696,13 +681,13 @@
       const centerY = rect.height / 2;
       const mouseX = e.clientX - centerX;
       const mouseY = e.clientY - centerY;
-      const maxTilt = 15;
+      const maxTilt = 10;
       const tiltX = (mouseY / centerY) * -maxTilt;
       const tiltY = (mouseX / centerX) * maxTilt;
       
       const sections = document.querySelectorAll('.section');
       sections.forEach(section => {
-        section.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(20px)`;
+        section.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(10px)`;
       });
     });
 
@@ -760,5 +745,6 @@
         }
       }
     });
-
-
+  </script>
+</body>
+</html>
